@@ -1,8 +1,9 @@
+package Graphs;
 
 public class Edge implements Comparable<Edge> {
 
-	protected int source;
-	protected int dest;
+	public int source;
+	public int dest;
 	double weight;
 	
 	public Edge(int source, int dest, double weight) {

@@ -1,10 +1,13 @@
+package Graphs.GraphClasses;
+import Graphs.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 
 public class Lollipop {
 
-	Graph graph;
+	public Graph graph;
 	
 	public Lollipop(int order) {
 		graph = new Graph(order);

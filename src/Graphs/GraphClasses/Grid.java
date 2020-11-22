@@ -1,3 +1,6 @@
+package Graphs.GraphClasses;
+import Graphs.*;
+
 import java.util.BitSet;
 
 
@@ -7,7 +10,7 @@ public class Grid {
 	int height;
 	int maxVertex;
 	
-	Graph graph;
+	public Graph graph;
 	
 	public int abscissaOfVertex(int vertex) {
 		return vertex % width;

@@ -1,7 +1,9 @@
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.LinkedList;
-import java.util.Queue;
+package RandomTreeAlgos;
+
+import Graphs.Arc;
+import Graphs.Graph;
+
+import java.util.*;
 
 
 public class BreadthFirstSearch {
@@ -42,5 +44,5 @@ public class BreadthFirstSearch {
 		algo.bfs(root);
 		return algo.tree;
 	}
-	
+
 }

@@ -1,7 +1,9 @@
+package Graphs.GraphClasses;
+import Graphs.* ;
 
 public class Complete {
 
-	Graph graph;
+	public Graph graph;
 	
 	public Complete(int order) {
 		this.graph = new Graph(order);

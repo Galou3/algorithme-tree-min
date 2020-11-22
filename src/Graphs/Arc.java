@@ -1,6 +1,7 @@
+package Graphs;
 
 public class Arc {
-	Edge support;
+	public Edge support;
 	boolean reversed;
 	
 	public Arc(Edge e, boolean reversed) {

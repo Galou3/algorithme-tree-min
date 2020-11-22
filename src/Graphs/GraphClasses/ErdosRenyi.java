@@ -1,3 +1,7 @@
+package Graphs.GraphClasses;
+import Graphs.* ;
+import RandomTreeAlgos.BreadthFirstSearch;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -5,7 +9,7 @@ import java.util.Random;
 public class ErdosRenyi {
 
 	private final static Random gen = new Random();
-	Graph graph;
+	public Graph graph;
 	private int order;
 	private double edgeProbability;
 	
