@@ -1,5 +1,5 @@
-package Graphs.GraphClasses;
-import Graphs.* ;
+package GraphClasses;
+import Graph.* ;
 import RandomTreeAlgos.BreadthFirstSearch;
 
 import java.util.ArrayList;

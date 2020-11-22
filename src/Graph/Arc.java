@@ -1,4 +1,4 @@
-package Graphs;
+package Graph;
 
 public class Arc {
 	public Edge support;

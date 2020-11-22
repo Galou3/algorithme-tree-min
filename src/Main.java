@@ -1,5 +1,5 @@
-import Graphs.*;
-import Graphs.GraphClasses.*;
+import Graph.*;
+import GraphClasses.*;
 import RandomTreeAlgos.BreadthFirstSearch;
 
 import java.io.IOException;

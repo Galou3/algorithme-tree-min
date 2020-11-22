@@ -4,6 +4,7 @@ MAINCLASS=Main
 ## Le chemin vers où votre classe compilée est installée
 # Renommez si nécessaire
 INSTALLDIR=out/production/TP3
+JARFILE=TP3RandomTrees
 
 all: compile install exec
 
@@ -11,16 +12,26 @@ all: compile install exec
 compile:
 	cd src ; make compile
 
+jar: compile
+	cd $(INSTALLDIR); \
+	echo Main-Class: $(subst /,.,$(MAINCLASS)) > manifest.txt ; \
+	jar cvfm $(JARFILE).jar manifest.txt ./
+	mv $(INSTALLDIR)/$(JARFILE).jar ./
+
 install:
 	cd src ; make install
 
 clean:
 	cd src ; make clean ; make cleanInstall
-	rm *.zip
+	rm *.zip *.jar manifest.*
 
 # Cible qui explique comment executer
 exec:
 	java -classpath $(INSTALLDIR) $(MAINCLASS)
+
+# Ou autrement
+# exec: $(JARFILE).jar
+#	java -jar $(JARFILE).jar
 
 # Demarre automatiquement une demonstration de votre programme
 # Il faut que cette demo soit convaincante

@@ -1,5 +1,5 @@
-package Graphs.GraphClasses;
-import Graphs.*;
+package GraphClasses;
+import Graph.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
