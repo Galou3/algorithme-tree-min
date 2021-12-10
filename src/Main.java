@@ -39,10 +39,10 @@ public class Main {
 
         grid = new Grid(1920 / 11, 1080 / 11);
         Graph graph = grid.graph;
-//		Graph graph = new Complete(400).graph;
-//		Graph graph = new ErdosRenyi(1_000, 100).graph;
-//		Graph graph = new Lollipop(1_000).graph;
-        return grid.graph;
+        //Graph graph = new Complete(400).graph;
+        //Graph graph = new ErdosRenyi(1_000, 100).graph;
+        //Graph graph = new Lollipop(1_000).graph;
+        return graph;
     }
 
     public static ArrayList<Edge> genTree(Graph graph) {
@@ -54,6 +54,7 @@ public class Main {
         // Non-random BFS
         ArrayList<Arc> randomArcTree =
                 BreadthFirstSearch.generateTree(graph, 0);
+
         randomTree = new ArrayList<>();
         for (Arc a : randomArcTree) randomTree.add(a.support);
         return randomTree;
