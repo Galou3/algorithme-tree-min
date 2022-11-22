@@ -1,6 +1,7 @@
 import Graph.*;
 import GraphClasses.*;
 import RandomTreeAlgos.BreadthFirstSearch;
+import Graphics.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class Main {
     }
 
     private static Graph chooseFromGraphFamily() {
-        // Parametriser ici cette fonction afon de pouvoir choisir
+        // Parametriser ici cette fonction afin de pouvoir choisir
         // quelle classe de graohe utiliser
 
         grid = new Grid(1920 / 11, 1080 / 11);

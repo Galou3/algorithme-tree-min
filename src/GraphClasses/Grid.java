@@ -1,5 +1,4 @@
 package GraphClasses;
-
 import Graph.*;
 
 import java.util.BitSet;
@@ -7,8 +6,8 @@ import java.util.BitSet;
 
 public class Grid {
 
-    int width;
-    int height;
+    public int width;
+    public int height;
     int maxVertex;
 
     public Graph graph;

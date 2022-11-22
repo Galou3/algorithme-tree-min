@@ -1,5 +1,6 @@
-package GraphClasses;
+package Graphics;
 import Graph.*;
+import GraphClasses.*;
 
 
 import java.awt.Color;
