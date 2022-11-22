@@ -26,12 +26,12 @@ clean:
 	rm *.zip *.jar manifest.*
 
 # Cible qui explique comment executer
-exec:
-	java -classpath $(INSTALLDIR) $(MAINCLASS)
+exec: $(JARFILE).jar
+	java -jar $(JARFILE).jar
 
 # Ou autrement
-# exec: $(JARFILE).jar
-#	java -jar $(JARFILE).jar
+#exec:
+#	java -classpath $(INSTALLDIR) $(MAINCLASS)
 
 # Demarre automatiquement une demonstration de votre programme
 # Il faut que cette demo soit convaincante
