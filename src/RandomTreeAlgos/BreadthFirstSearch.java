@@ -8,12 +8,13 @@ import java.util.*;
 
 public class BreadthFirstSearch {
 
-	Graph graph;
-	Queue<Arc> frontier;
-	ArrayList<Arc> tree;
-	BitSet reached;
+	Graph graph; //un graphe
+	Queue<Arc> frontier; //file d'attente qui contient les sommets
+	ArrayList<Arc> tree; //liste qui contient les arcs du graphe
+	BitSet reached; //pour chaque sommet s'il a été atteint ou non
 	
 	private void push(int vertex) {
+
 		for (Arc arc : graph.outNeighbours(vertex)) frontier.offer(arc);
 	}
 	

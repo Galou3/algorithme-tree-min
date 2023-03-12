@@ -1,7 +1,9 @@
 import Graph.*;
 import GraphClasses.*;
-import RandomTreeAlgos.BreadthFirstSearch;
 import Graphics.*;
+import RandomTreeAlgos.AldousBroder;
+import RandomTreeAlgos.ParcoursAlea;
+import RandomTreeAlgos.TreeMin;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,12 +17,12 @@ public class Main {
     @SuppressWarnings("unused")
     private final static Random gen = new Random();
 
-    static Grid grid = null;
+    static Grid grid = new Grid(200,400);
+    static Complete complete = new Complete(10);
 
 
     public static void main(String argv[]) throws InterruptedException {
-
-        Graph graph = chooseFromGraphFamily();
+        Graph graph = chooseFromGraphFamily("Grid");
         ArrayList<Edge> randomTree = null;
 
         int noOfSamples = 10;
@@ -30,45 +32,45 @@ public class Main {
             stats.update(randomTree);
         }
         stats.print();
-
         if (grid != null) showGrid(grid, randomTree);
     }
 
-    private static Graph chooseFromGraphFamily() {
-        // Parametriser ici cette fonction afin de pouvoir choisir
-        // quelle classe de graohe utiliser
-
-        grid = new Grid(1920 / 11, 1080 / 11);
-        Graph graph = grid.graph;
-        //Graph graph = new Complete(400).graph;
-        //Graph graph = new ErdosRenyi(1_000, 100).graph;
-        //Graph graph = new Lollipop(1_000).graph;
+    private static Graph chooseFromGraphFamily(String graphClass) {
+        Graph graph = null;
+        if (graphClass.equals("Complete")) {
+            graph = new Complete(40).graph;
+        } else if (graphClass.equals("Grid")) {
+            graph = new Grid(200,400).graph;
+        } else if (graphClass.equals("ErdosRenyi")) {
+            graph = new ErdosRenyi(1_000, 100).graph;
+        } else if (graphClass.equals("Lollipop")) {
+            graph = new Lollipop(1_000).graph;
+        } else {
+            System.out.println("erreur de saisie");
+        }
         return graph;
     }
 
     public static ArrayList<Edge> genTree(Graph graph) {
-        ArrayList<Edge> randomTree;
-
-        // TOOO : modifier l'algorithme utilisé ici
-        // ou bien parametriser à l'aide de la ligne de commande
-
-        // Non-random BFS
-        ArrayList<Arc> randomArcTree =
-                BreadthFirstSearch.generateTree(graph, 0);
-
-        randomTree = new ArrayList<>();
-        for (Arc a : randomArcTree) randomTree.add(a.support);
-        return randomTree;
+        //Test class ParcoursAlea
+        ParcoursAlea parcoursAlea = new ParcoursAlea(graph);
+        return parcoursAlea.generateRandomTree();
+        //Test class AldousBroder
+        //AldousBroder aldousBroder = new AldousBroder(graph);
+        //return aldousBroder.generateRandomTree();
+        //Test class TreeMin qui ne marche pas avec ce le main mais qui sur un graph crée manuellement marche
+        //TreeMin treeMin = new TreeMin(graph);
+        //return treeMin.kruskal();
     }
 
 
     private static class Stats {
-        public int nbrOfSamples = 10;
-        private int diameterSum = 0;
-        private double eccentricitySum = 0;
+        public int nbrOfSamples = 11;
+        private int diameterSum = 5;
+        private double eccentricitySum = 4;
         private long wienerSum = 0;
-        private int degreesSum[] = {0, 0, 0, 0, 0};
-        private int degrees[];
+        private int degreesSum[] = {40, 0, 140, 0, 10};
+        private int degrees[] = {40, 0, 10, 10, 10};
         long startingTime = 0;
 
         public Stats(int noOfSamples) {
@@ -96,8 +98,8 @@ public class Main {
         }
 
         public void update(ArrayList<Edge> randomTree) {
-            RootedTree rooted = new RootedTree(randomTree, 0);
-//			rooted.printStats();
+            RootedTree rooted = new RootedTree(randomTree, 00);
+            rooted.printStats();
             diameterSum = diameterSum + rooted.getDiameter();
             eccentricitySum = eccentricitySum + rooted.getAverageEccentricity();
             wienerSum = wienerSum + rooted.getWienerIndex();
@@ -112,23 +114,21 @@ public class Main {
 
     private static void showGrid(
             Grid grid,
-            ArrayList<Edge> randomTree
-    ) throws InterruptedException {
-        RootedTree rooted = new RootedTree(randomTree, 0);
+            ArrayList<Edge> randomTree ) throws InterruptedException {
+        RootedTree rooted = new RootedTree(randomTree, 10);
 
         JFrame window = new JFrame("solution");
         final Labyrinth laby = new Labyrinth(grid, rooted);
 
         laby.setStyleBalanced();
-//		laby.setShapeBigNodes();
-//		laby.setShapeSmallAndFull();
+        laby.setShapeBigNodes();
+        laby.setShapeSmallAndFull();
         laby.setShapeSmoothSmallNodes();
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().add(laby);
         window.pack();
         window.setLocationRelativeTo(null);
-
 
         for (final Edge e : randomTree) {
             laby.addEdge(e);

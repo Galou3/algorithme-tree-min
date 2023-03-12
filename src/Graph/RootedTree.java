@@ -7,10 +7,10 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
 public class RootedTree {
 	
 	private int getHeight(Node n) {
+
 		return (n == null ? -1 : n.height);
 	}
 	
@@ -53,7 +53,7 @@ public class RootedTree {
 		
 		private Node maxSizeSon() {
 			Node maxSon = null;
-			for (Node son : sons) { 
+			for (Node son : sons) {
 				if (son.size > getSize(maxSon)) maxSon = son;
 			}
 			return maxSon;
